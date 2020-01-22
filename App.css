@@ -1,0 +1,17 @@
+.home {
+    flex: 1;
+    justify-content: "center";
+    padding-left: 100,;
+    padding-bottom: 120 ;
+}
+
+.logo {
+    width: 193;
+    height: 170;
+    justify-content: "center";
+}
+
+.welcome {
+    padding-left: 33;
+    padding-top: 15
+}
