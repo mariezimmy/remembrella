@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import * as firebase from 'firebase';
 import Home from './components/Home';
+import Login from './components/Login/Login';
 
 const Stack = createStackNavigator();
 
@@ -24,7 +25,7 @@ export default class App extends Component {
 		return (
 			<NavigationContainer>
 				<Stack.Navigator>
-					<Stack.Screen name="Home" component={Home} />
+					<Stack.Screen name="Login" component={Login} />
 				</Stack.Navigator>
 			</NavigationContainer>
 		);

@@ -10,7 +10,8 @@ const styles = StyleSheet.create({
 		flex           : 2,
 		justifyContent : 'center',
 		alignItems     : 'center',
-		paddingBottom  : 120
+		paddingBottom  : 120,
+		fontFamily     : 'PingFangHK-Regular'
 	},
 
 	logo           : {
