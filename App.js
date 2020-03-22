@@ -1,58 +1,32 @@
 import React, { Component } from 'react';
-import { Text, View, Image, StyleSheet } from 'react-native';
+import 'react-native-gesture-handler';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import * as firebase from 'firebase';
+import Home from './components/Home';
 
-const key = "b19ca9d2560306c28a0fdac6c12537ba";
-const zip = 30363;
+const Stack = createStackNavigator();
 
-const styles = StyleSheet.create({
-  home: {
-    flex: 1,
-    justifyContent: "center",
-    paddingLeft: 100,
-    paddingBottom: 120
-  },
+// Initialize Firebase
+const firebaseConfig = {
+	// AIzaSyAOwvIqZPYo66HlvFd0QEOvZBhR5cUevLw from iOS
+	// AIzaSyAk0EvvIdkIatoaHJvrgEeKwzdLzR1peDU from web app
+	apiKey        : 'AIzaSyAk0EvvIdkIatoaHJvrgEeKwzdLzR1peDU',
+	authDomain    : '"remembrella.firebaseapp.com"',
+	databaseURL   : 'https://remembrella.firebaseio.com',
+	storageBucket : 'remembrella.appspot.com'
+};
 
-  logo: {
-    width: 193,
-    height: 170,
-    justifyContent: "center"
-  },
-
-  welcome: {
-    paddingLeft: 33,
-    paddingTop: 15
-  }
-})
+firebase.initializeApp(firebaseConfig);
 
 export default class App extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      isRaining: false,
-      text: "It's not raining. No need for an umbrella today."
-    };
-
-    this.getWeather();
-  }
-
-  async getWeather() {
-    const api_call = await fetch(`http://api.openweathermap.org/data/2.5/weather?zip=${zip},us&appid=${key}`);
-    const response = await api_call.json();
-    // main rain
-    var weather = response.weather[0].main;
-    if (weather == "Rain") {
-      this.setState({ isRaining: false, text: "It is raining! Don't forget to bring your umbrella." });
-    }
-  }
-
-  render() {
-    return (
-      <View style={styles.home}>
-        <Image source={require("./umbrella.png")} style={styles.logo} />
-        <Text style={styles.welcome}>
-          {this.state.text}
-        </Text>
-      </View >
-    );
-  }
+	render() {
+		return (
+			<NavigationContainer>
+				<Stack.Navigator>
+					<Stack.Screen name="Home" component={Home} />
+				</Stack.Navigator>
+			</NavigationContainer>
+		);
+	}
 }
